@@ -4,14 +4,14 @@ import ItemsApi from "./ItemsApi";
 import IsoTopeGrid from "react-isotope";
 
 export default function App() {
-  const [products, setProducts] = useState([]);
+  const [items, setItems] = useState([]);
   const [filters, updateFilters] = useState([]);
 
   useEffect(() => {
     ItemsApi.fetchAll().then((items) => {
       const newItems = [...items];
       newItems.map((item) => (item.filter = [item.style]));
-      setProducts(newItems);
+      setItems(newItems);
 
       const styles = new Set(newItems.map((item) => item.style));
 
@@ -65,21 +65,21 @@ export default function App() {
 
       <div>
         <IsoTopeGrid
-          gridLayout={products}
+          gridLayout={items}
           noOfCols={5}
           unitWidth={300}
           unitHeight={200}
           filters={filters}
         >
-          {products.map((product) => (
-            <div key={product.id} className={`product`}>
+          {items.map((item) => (
+            <div key={item.id} className={`item`}>
               <a
-                href={`https://dxkzdyxzguxk9.cloudfront.net/product/${product.id}`}
+                href={item.url}
                 target="_blank"
               >
                 <img
                   style={{ maxWidth: "100%", maxHeight: "90%" }}
-                  src={product.image}
+                  src={item.image}
                 ></img>
               </a>
             </div>
