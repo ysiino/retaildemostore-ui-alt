@@ -74,7 +74,7 @@ export default function App() {
           {items.map((item) => (
             <div key={item.id} className={`item`}>
               <a
-                href={item.url?.replace('/*/', '/')}
+                href={item.url?.replace('/#/', '/')}
                 target="_blank"
               >
                 <img
